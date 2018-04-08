@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Matthew
+ */
+public class Main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String start[] = scan.nextLine().split(" ");
+        String end[] = scan.nextLine().split(" ");
+        double battery = scan.nextInt();
+        
+        
+        double xDif = Math.abs(Integer.parseInt(start[0]) - Integer.parseInt(end[0]));
+        double yDif = Math.abs(Integer.parseInt(start[1]) - Integer.parseInt(end[1]));
+        
+        if ((xDif + yDif) % 2 == 0 && battery % 2 == 0 && battery >= (xDif + yDif)) {
+            System.out.println("Y");
+        }
+        else if ((xDif + yDif) % 2 != 0 && battery % 2 != 0 && battery >= (xDif + yDif)) {
+            System.out.println("Y");
+        }
+        else {
+            System.out.println("N");
+        }
+    }
+}
