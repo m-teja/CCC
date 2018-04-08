@@ -1,0 +1,41 @@
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Matthew
+ */
+public class SumGameS1 {
+    
+    public static void main (String[] args) throws Exception{
+
+        int output = 0;
+        
+        Scanner first = new Scanner(System.in);
+        int N = first.nextInt();
+        first.nextLine();
+        String swifts = first.nextLine();
+        
+        String semaphores = first.nextLine();
+        
+        String[] swiftTemp = swifts.split(" ");
+        String[] semaphoresTemp = semaphores.split(" ");
+        
+        int swiftTotal = 0;
+        int semaphoresTotal = 0;
+        
+        for (int i = 0; i < N; ++i) {
+
+            swiftTotal += Integer.parseInt(swiftTemp[i]);
+            semaphoresTotal += Integer.parseInt(semaphoresTemp[i]);
+
+            if (swiftTotal == semaphoresTotal) {
+                output = i+1;
+            }
+        }
+        System.out.println(output);
+
+    }
+        
+    
+}
