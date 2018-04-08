@@ -1,0 +1,59 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Matthew
+ */
+public class Main {
+    public static void main(String[] arg) throws Exception {
+        Scanner input = new Scanner(System.in);
+        int choice = input.nextInt();
+        input.nextLine();
+        
+        int citizens = input.nextInt();
+        input.nextLine();
+        
+        String[] dmojistanIn = input.nextLine().split(" ");
+        String[] peglandIn = input.nextLine().split(" ");
+        
+        int dmojistan[] = new int[citizens];
+        int pegland[] = new int[citizens];
+        
+        for (int i = 0; i < citizens; i++) {
+            dmojistan[i] = Integer.parseInt(dmojistanIn[i]);
+            pegland[i] = Integer.parseInt(peglandIn[i]);
+        }
+
+        if (choice == 1) {
+            Arrays.sort(dmojistan);
+            Arrays.sort(pegland);
+            
+            int temp = 0;
+            
+            for (int i = 0; i < citizens; i++) {
+                temp+=  dmojistan[i] > pegland[i] ? dmojistan[i] : pegland[i];
+            }
+            System.out.println(temp);
+        }
+        else {
+            Arrays.sort(dmojistan);
+            Arrays.sort(pegland);
+            
+            int temp = 0; 
+            
+            for (int i = 0, j = citizens-1; i < citizens; i++, j--) {
+              
+                temp+=  dmojistan[i] > pegland[j] ? dmojistan[i] : pegland[j];
+            }
+            System.out.println(temp);
+        }
+        
+    }
+}
