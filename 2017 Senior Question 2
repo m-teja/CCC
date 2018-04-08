@@ -1,0 +1,41 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Matthew
+ */
+public class HighTideLowTideS2 {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        
+        int N = in.nextInt();
+        in.nextLine();
+        String ary[] = in.nextLine().split(" ");
+        int numbAry[] = new int[N];
+        
+        for (int i = 0; i < N; i++) {
+            numbAry[i] = Integer.parseInt(ary[i]);
+        }
+        Arrays.sort(numbAry);
+        
+        for (int i = (int)Math.ceil((double)N/2), j = (int)Math.ceil((double)N/2)-1; i < N+1; i++, j--) {
+            try {
+                System.out.print(numbAry[j] + " ");
+            }
+            catch (ArrayIndexOutOfBoundsException e) {}
+            try {
+            System.out.print(numbAry[i] + " ");
+            }
+            catch (ArrayIndexOutOfBoundsException e) {}
+        }
+        
+        
+    }
+}
