@@ -1,0 +1,139 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author m.teja
+ */
+public class Main {
+    public static ArrayList ary = new ArrayList();
+    public static int answer = 0;
+    public static int counter = 0;
+    
+    public static void recur(int numb) {
+        if ((int)ary.get(0) != 0) {
+                int temp = (int)ary.get(3) - (int)ary.get(2);
+                //System.out.println(ary);
+                //System.out.println(temp);
+                if ((int)ary.get(2) - (int)ary.get(1) == temp && (int)ary.get(1) - (int)ary.get(0) == temp) {
+                    answer++;
+                }
+            }
+            else if ((int)ary.get(0) == 0) {
+                int temp = (int)ary.get(3) - (int)ary.get(2);
+                if ((int)ary.get(2) - (int)ary.get(1) == temp) {
+                    answer++;
+                }
+                
+            }
+        
+        if (numb > 0) {
+            //normal
+            if ((int)ary.get(3) > 0) {
+                ary.set(3,(int)ary.get(3)-1);
+            }
+            //move to tens of minutes
+            else if ((int)ary.get(3) == 0) {
+                if ((int)ary.get(2) !=0) {
+                    ary.set(2,(int)ary.get(2)-1);
+                    ary.set(3, 9);
+                }
+                //move to hours
+                else if ((int) ary.get(2) == 0) {
+                    
+                    
+                    if ((int) ary.get(1) == 0 && (int) ary.get(0) == 1) {
+                        ary.set(0,0);
+                        ary.set(1,10);
+                        ary.set(2,5);
+                        ary.set(3,9);
+                    }
+                    
+                    if ((int) ary.get(0) == 1 && (int) ary.get(1) == 1) {
+                        ary.set(0,1);
+                        ary.set(1,0);
+                        ary.set(2,5);
+                        ary.set(3,9);
+                    }
+                    
+                    else if ((int)ary.get(1) > 0) {
+                        ary.set(1,(int)ary.get(1)-1);
+                        ary.set(2,5);
+                        ary.set(3,9);
+                    }
+                    if ((int) ary.get(1) == 0 && (int) ary.get(0) == 0) {
+                        ary.set(0,1);
+                        ary.set(1,2);
+                        ary.set(2,5);
+                        ary.set(3,9);
+                    }
+                }
+            }
+            
+            //System.out.println(ary);
+            numb--;
+            recur(numb);
+        }
+        
+        
+        
+        
+    }
+
+    
+    public static void main(String[] args) throws Exception {
+        Scanner first = new Scanner(System.in);
+        NumberFormat formatter = new DecimalFormat("#00");
+        int time = first.nextInt();
+        int hour = time / 60;
+        
+        
+        
+        for (; hour > 11; hour-=12) {
+            answer+=31;
+            time-=720;
+            
+        }
+
+        int minutes = time % 60;
+        if (minutes < 10) {
+            
+        }
+        
+        if (hour == 0) {
+            hour = 12;
+        }
+        if (Integer.toString(hour).length() == 2) {
+            ary.add(Integer.parseInt(Integer.toString(hour).substring(0,1)));
+            ary.add(Integer.parseInt(Integer.toString(hour).substring(1,2)));
+        }
+        else {
+            ary.add(0, 0);
+            ary.add(Integer.parseInt(Integer.toString(hour)));
+        }
+        if (Integer.toString(minutes).length() == 1) {
+            ary.add(0);
+            ary.add(Integer.parseInt(Integer.toString(minutes)));
+        }
+        else {
+            ary.add(Integer.parseInt(Integer.toString(minutes).substring(0,1)));
+            ary.add(Integer.parseInt(Integer.toString(minutes).substring(1,2)));
+        }
+
+        
+        
+        recur(time);
+        System.out.println(answer);
+  
+    }
+    
+}
